@@ -41,9 +41,9 @@
         viewController.hidesBottomBarWhenPushed = YES;
         
         // 设置导航栏上面的内容
-//        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self Action:@selector(back) imageNormal:@"navigationbar_back" imageHlight:@"navigationbar_back_highlighted"];
-//        
-//        viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self Action:@selector(forward) imageNormal:@"navigationbar_more" imageHlight:@"navigationbar_more_highlighted"];
+        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self Action:@selector(back) imageNormal:@"navigationbar_back" imageHlight:@"navigationbar_back_highlighted"];
+        
+        viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self Action:@selector(forward) imageNormal:@"navigationbar_more" imageHlight:@"navigationbar_more_highlighted"];
     }
     
     [super pushViewController:viewController animated:YES];

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HDHomeViewController : UITableViewController
-
+@interface HDHomeViewController : UIViewController
+@property(nonatomic, strong) UITableView *tableView;
 @end

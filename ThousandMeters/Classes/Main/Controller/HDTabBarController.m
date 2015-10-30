@@ -20,6 +20,18 @@
 
 @implementation HDTabBarController
 
++ (void)initialize{
+    UITabBarItem *item = [UITabBarItem appearance];
+    
+    // 设置普通状态
+    NSDictionary *normalAttr = @{NSForegroundColorAttributeName:[UIColor orangeColor],NSFontAttributeName:[UIFont systemFontOfSize:13]};
+    [item setTitleTextAttributes:normalAttr forState:UIControlStateNormal];
+    
+    // 设置被选中状态
+    NSDictionary *selectedAttr = @{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:[UIFont systemFontOfSize:13]};
+    [item setTitleTextAttributes:selectedAttr forState:UIControlStateSelected];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -35,10 +47,11 @@
     HDPersonalCenterViewController *PersonalCenter = [[HDPersonalCenterViewController alloc] init];
     [self addChildVc:PersonalCenter title:@"个人中心" image:@"tabbar_profile" selectedImage:@"tabbar_profile_selected"];
     
-//    // 更换系统自带的tabbar
-//    //self.tabBar = [[WBTabBar alloc] init] // tabBar属性为readonly，所以只能用KVC
-//    WBTabBar *tabbar = [[WBTabBar alloc] init];
-//    [self setValue:tabbar forKey:@"tabBar"];
+    //[[UITabBar appearance] setShadowImage:[UIImage new]];
+    //[[UITabBar appearance] setBackgroundImage:[[UIImage alloc]init]];
+    //[[UITabBar appearance] setTranslucent:NO]; // 半透明
+    //[self.tabBar setBarTintColor:HDColor(226, 71, 85)];
+    //[[UITabBar appearance] setBackgroundColor:HDColor(226, 71, 85)];
 }
 
 - (void)addChildVc:(UIViewController *)childVc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage
@@ -56,8 +69,7 @@
     NSDictionary *seltextAttr = @{NSForegroundColorAttributeName:[UIColor orangeColor]};
     [childVc.tabBarItem setTitleTextAttributes:textAttr forState:UIControlStateNormal];
     [childVc.tabBarItem setTitleTextAttributes:seltextAttr forState:UIControlStateSelected];
-    childVc.view.backgroundColor = HDRandomColor;
-    
+    //childVc.view.backgroundColor = HDRandomColor;
     
     // 先给外面传进来的小控制器 包装 一个导航控制器
     HDNavigationController *nav = [[HDNavigationController alloc] initWithRootViewController:childVc];

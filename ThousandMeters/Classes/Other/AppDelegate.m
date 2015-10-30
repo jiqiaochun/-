@@ -8,6 +8,10 @@
 
 #import "AppDelegate.h"
 #import "HDTabBarController.h"
+#import "HDHomeViewController.h"
+#import "HDHotStyleViewController.h"
+#import "HDShoppingCartViewController.h"
+#import "HDPersonalCenterViewController.h"
 
 @interface AppDelegate ()
 
@@ -27,6 +31,8 @@
     
     // 显示窗口
     [self.window makeKeyAndVisible];
+    
+    //[self initRootVC];
     
     return YES;
 }

@@ -72,7 +72,7 @@
 - (void)initScrollViewRoll{
     if (!_scrolLoopView) {
         _scrolLoopView = [[UIImageBannerScrollView alloc] initWithFrame:CGRectMake(0, 0, kWidth, 180) images:self.imageViewArray];
-        _scrolLoopView.bannerScrollTimer = 4.f;
+        _scrolLoopView.bannerScrollTimer = 2.f;
         _scrolLoopView.bannerAutoScroll = YES;
         _scrolLoopView.scrollDelegate = self;
         _scrolLoopView.isNeedTopGrayShadow = YES;
@@ -156,23 +156,66 @@
     if (section == 0) {
         return 1;
     }else{
-        return 5;
+        return 30;
     }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 5;
+    return 1;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWidth, 10)];
-    headerView.backgroundColor = HDColor(239, 239, 244);
-    return headerView;
+    UIView *header = [[UIView alloc] init];
+    header.backgroundColor = HDColor(239, 239, 244);
+    
+    UIImageView *eat = [[UIImageView alloc] initWithFrame:CGRectMake(10, 3, 24, 24)];
+    
+    UIButton *more = [[UIButton alloc] initWithFrame:CGRectMake(kWidth-60, 3, 48, 24)];
+    
+    if (section == 0)
+    {
+        
+    }
+    else if (section == 1)
+    {
+        eat.image = [UIImage imageNamed:@"app"];
+        [more setTitle:@"更多" forState:UIControlStateNormal];
+        [more setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        more.backgroundColor = [UIColor redColor];
+        [more addTarget:self action:@selector(eatMoreClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    else if (section == 2)
+    {
+        eat.image = [UIImage imageNamed:@"cast"];
+        [more setTitle:@"更多" forState:UIControlStateNormal];
+        [more setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        more.backgroundColor = [UIColor redColor];
+        [more addTarget:self action:@selector(drinkMoreClick:) forControlEvents:UIControlEventTouchUpInside];
+    }else
+    {
+        eat.image = [UIImage imageNamed:@"find_people"];
+        [more setTitle:@"更多" forState:UIControlStateNormal];
+        [more setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        more.backgroundColor = [UIColor redColor];
+        [more addTarget:self action:@selector(playMoreClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    [header addSubview:eat];
+    [header addSubview:more];
+
+    return header;
 }
--(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWidth, 0)];
-    footerView.backgroundColor = HDColor(239, 239, 244);
-    return footerView;
+
+- (void)eatMoreClick:(UIButton *)eatMore{
+    NSLog(@"eat----more");
+}
+
+- (void)drinkMoreClick:(UIButton *)eatMore{
+    NSLog(@"drink----more");
+}
+
+- (void)playMoreClick:(UIButton *)eatMore{
+    NSLog(@"drink----more");
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

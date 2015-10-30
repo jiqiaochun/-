@@ -9,15 +9,19 @@
 #import "HDHomeViewController.h"
 #import "HotQueueModel.h"
 #import "HomeMenuCell.h"
+#import "UIImageBannerScrollView.h"
 
 
-@interface HDHomeViewController () <UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+@interface HDHomeViewController () <UITableViewDelegate,UITableViewDataSource,BannerScrollViewDelegate,UITextFieldDelegate>
 {
     NSMutableArray *_menuArray;//圆形按钮
     HotQueueModel *_hotQueueData;
 }
 @property (nonatomic,strong) UIView *navView;
 @property (nonatomic,strong) HDSearchBar *searchBar;
+
+@property (nonatomic, strong) NSArray               *imageViewArray;
+@property (nonatomic, strong) UIImageBannerScrollView     *scrolLoopView;
 
 @end
 
@@ -58,8 +62,39 @@
     [self initData];
     
     [self initTableView];
+    
+    [self initScrollViewRoll];
 
     self.searchBar.delegate = self;
+}
+
+// 图片轮播器
+- (void)initScrollViewRoll{
+    if (!_scrolLoopView) {
+        _scrolLoopView = [[UIImageBannerScrollView alloc] initWithFrame:CGRectMake(0, 0, kWidth, 180) images:self.imageViewArray];
+        _scrolLoopView.bannerScrollTimer = 4.f;
+        _scrolLoopView.bannerAutoScroll = YES;
+        _scrolLoopView.scrollDelegate = self;
+        _scrolLoopView.isNeedTopGrayShadow = YES;
+        [_scrolLoopView startScrolling];
+    }
+    self.tableView.tableHeaderView = self.scrolLoopView;
+}
+
+- (NSArray *)imageViewArray {
+    if (!_imageViewArray) {
+        _imageViewArray = [NSArray arrayWithObjects:
+                           @"http://demo.lanrenzhijia.com/2014/pic0929/images/taobao.png",
+                           @"http://demo.lanrenzhijia.com/2014/pic0929/images/jd.png",
+                           @"http://demo.lanrenzhijia.com/2014/pic0929/images/youku.png", nil];
+    }
+    return _imageViewArray;
+}
+
+#pragma mark - ScrollViewDelegate
+
+- (void)scrollViewClicked:(UIImageBannerScrollView *)bannerView didSelectIndex:(NSInteger)index withUrlString:(NSString *)urlString {
+    NSLog(@"index:%ld, urlString:%@", index, urlString);
 }
 
 //初始化数据

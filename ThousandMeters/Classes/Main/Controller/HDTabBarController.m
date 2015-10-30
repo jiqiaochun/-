@@ -20,17 +20,17 @@
 
 @implementation HDTabBarController
 
-+ (void)initialize{
-    UITabBarItem *item = [UITabBarItem appearance];
-    
-    // 设置普通状态
-    NSDictionary *normalAttr = @{NSForegroundColorAttributeName:[UIColor orangeColor],NSFontAttributeName:[UIFont systemFontOfSize:13]};
-    [item setTitleTextAttributes:normalAttr forState:UIControlStateNormal];
-    
-    // 设置被选中状态
-    NSDictionary *selectedAttr = @{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:[UIFont systemFontOfSize:13]};
-    [item setTitleTextAttributes:selectedAttr forState:UIControlStateSelected];
-}
+//+ (void)initialize{
+//    UITabBarItem *item = [UITabBarItem appearance];
+//    
+//    // 设置普通状态
+//    NSDictionary *normalAttr = @{NSForegroundColorAttributeName:[UIColor orangeColor],NSFontAttributeName:[UIFont systemFontOfSize:13]};
+//    [item setTitleTextAttributes:normalAttr forState:UIControlStateNormal];
+//    
+//    // 设置被选中状态
+//    NSDictionary *selectedAttr = @{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:[UIFont systemFontOfSize:13]};
+//    [item setTitleTextAttributes:selectedAttr forState:UIControlStateSelected];
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
